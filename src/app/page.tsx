@@ -26,11 +26,18 @@ export default function Home() {
 
   const handleSearchClick = () => {
     setError("");
+    // setPokemon(null);
     setPokemonName(inputValue);
   };
 
   if (pokemon === null) {
-    return <p>Loading...</p>;
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+          <p>Loading...</p>
+        </div>
+      </main>
+    );
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -44,26 +51,33 @@ export default function Home() {
             onChange={handleInputChange}
           />
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded ml-4"
+            className="bg-blue-200 hover:bg-blue-400 text-black font-bold py-1 px-4 rounded ml-4"
             onClick={handleSearchClick}
           >
             Search
           </button>
           {error && <p>Error: {error}</p>}
           <p className="text-4xl mt-8">{pokemon.name}</p>
-          <img src={pokemon.sprites.front_default} />
+          <div className="grid grid-cols-4 gap-4">
+            <img src={pokemon.sprites.front_default} />
+            <img src={pokemon.sprites.back_default} />
+            <img src={pokemon.sprites.front_shiny} />
+            <img src={pokemon.sprites.back_shiny} />
+          </div>
+          <p className="text-2xl mt-4">Height</p>
+          <p>{pokemon.height}</p>
           <p className="text-2xl mt-4">Types</p>
-          {pokemon.types.map((type) => (
-            <p>{type.type.name}</p>
+          {pokemon.types.map((type, index) => (
+            <p key={index}>{type.type.name}</p>
           ))}
           <p className="text-2xl mt-4">Abilities</p>
-          {pokemon.abilities.map((ability) => (
-            <p>{ability.ability.name}</p>
+          {pokemon.abilities.map((ability, index) => (
+            <p key={index}>{ability.ability.name}</p>
           ))}
           <p className="text-2xl mt-4">Moves</p>
           <div className="grid grid-cols-4 gap-4">
-            {pokemon.moves.map((move) => (
-              <p>{move.move.name}</p>
+            {pokemon.moves.map((move, index) => (
+              <p key={index}>{move.move.name}</p>
             ))}
           </div>
         </div>
