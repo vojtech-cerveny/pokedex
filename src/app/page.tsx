@@ -26,7 +26,6 @@ export default function Home() {
 
   const handleSearchClick = () => {
     setError("");
-    // setPokemon(null);
     setPokemonName(inputValue);
   };
 
