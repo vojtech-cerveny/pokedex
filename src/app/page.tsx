@@ -44,6 +44,8 @@ export default function Home() {
         <div>
           <input
             type="text"
+            id="pokemonName"
+            name="pokemonName"
             value={inputValue}
             placeholder="Search for a Pokemon"
             className="text-black p-1 rounded px-2"
