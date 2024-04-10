@@ -21,7 +21,7 @@ export default function Home() {
   }, [pokemonName]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value.toLowerCase());
   };
 
   const handleSearchClick = () => {
@@ -42,21 +42,26 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <div>
-          <input
-            type="text"
-            id="pokemonName"
-            name="pokemonName"
-            value={inputValue}
-            placeholder="Search for a Pokemon"
-            className="text-black p-1 rounded px-2"
-            onChange={handleInputChange}
-          />
-          <button
-            className="bg-blue-200 hover:bg-blue-400 text-black font-bold py-1 px-4 rounded ml-4"
-            onClick={handleSearchClick}
-          >
-            Search
-          </button>
+          <div className="flex">
+            <input
+              type="text"
+              id="pokemonName"
+              name="pokemonName"
+              value={inputValue}
+              placeholder="Search for a Pokemon"
+              className="text-black p-2 rounded px-2 flex-grow"
+              onChange={handleInputChange}
+            />
+            <button
+              className="bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded ml-4"
+              onClick={handleSearchClick}
+            >
+              Search
+            </button>
+          </div>
+          <p className="my-2 p-2 rounded border bg-gray-700 border-gray-500 text-gray-300 font-light">
+            Bulbasaur, Charmander, Squirtle, Ekans, Meowth, Psyduck, Poliwag
+          </p>
           {error && <p>Error: {error}</p>}
           <p className="text-4xl mt-8">{pokemon.name}</p>
           <div className="grid grid-cols-4 gap-4">
